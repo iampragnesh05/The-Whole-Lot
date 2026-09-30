@@ -1,0 +1,88 @@
+{
+  "functions": {
+    "*.php": {
+      "runtime": "vercel-php@0.7.3"
+    },
+    "reflections/*.php": {
+      "runtime": "vercel-php@0.7.3"
+    }
+  },
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/kit/(.*)",
+      "dest": "/kit/$1"
+    },
+    {
+      "src": "/_kit/(.*)",
+      "dest": "/_kit/$1"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/favicon.svg",
+      "dest": "/favicon.svg"
+    },
+    {
+      "src": "/about",
+      "dest": "/about.php"
+    },
+    {
+      "src": "/services",
+      "dest": "/services.php"
+    },
+    {
+      "src": "/work",
+      "dest": "/work.php"
+    },
+    {
+      "src": "/founders-lab",
+      "dest": "/founders-lab.php"
+    },
+    {
+      "src": "/ground-signal",
+      "dest": "/ground-signal.php"
+    },
+    {
+      "src": "/reflections",
+      "dest": "/reflections.php"
+    },
+    {
+      "src": "/contact",
+      "dest": "/contact.php"
+    },
+    {
+      "src": "/thank-you",
+      "dest": "/thank-you.php"
+    },
+    {
+      "src": "/contact-submit",
+      "dest": "/contact-submit.php"
+    },
+    {
+      "src": "/reflections/(.*)",
+      "dest": "/reflections/$1.php"
+    },
+    {
+      "src": "/",
+      "dest": "/index.php"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/404.php",
+      "status": 404
+    }
+  ]
+}
