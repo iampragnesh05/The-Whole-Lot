@@ -1,0 +1,79 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "*.php",
+      "use": "vercel-php@0.7.3"
+    },
+    {
+      "src": "assets/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.svg",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.txt",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.xml",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/favicon.svg",
+      "dest": "/favicon.svg"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/about",
+      "dest": "/about.php"
+    },
+    {
+      "src": "/services",
+      "dest": "/services.php"
+    },
+    {
+      "src": "/ground-signal",
+      "dest": "/ground-signal.php"
+    },
+    {
+      "src": "/founders-lab",
+      "dest": "/founders-lab.php"
+    },
+    {
+      "src": "/reflections",
+      "dest": "/reflections.php"
+    },
+    {
+      "src": "/work",
+      "dest": "/work.php"
+    },
+    {
+      "src": "/contact",
+      "dest": "/contact.php"
+    },
+    {
+      "src": "/thank-you",
+      "dest": "/thank-you.php"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
