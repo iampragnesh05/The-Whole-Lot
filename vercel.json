@@ -3,10 +3,24 @@
   "builds": [
     {
       "src": "*.php",
-      "use": "vercel-php@0.7.3"
+      "use": "vercel-php@0.7.3",
+      "config": {
+        "includeFiles": ["data/**", "includes/**"]
+      }
+    },
+    {
+      "src": "admin/*.php",
+      "use": "vercel-php@0.7.3",
+      "config": {
+        "includeFiles": ["data/**", "includes/**", "admin/**"]
+      }
     },
     {
       "src": "assets/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "data/**",
       "use": "@vercel/static"
     },
     {
@@ -78,6 +92,14 @@
     {
       "src": "/thank-you",
       "dest": "/thank-you.php"
+    },
+    {
+      "src": "/admin/?$",
+      "dest": "/admin/index.php"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "/admin/$1"
     },
     {
       "src": "/(.*)",

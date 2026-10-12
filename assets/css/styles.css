@@ -950,7 +950,7 @@ main {
   width: 100%;
   aspect-ratio: 16 / 7.2;
   min-height: clamp(480px, 62vh, 760px);
-  background: #0B0B0E url('../images/groundsignal-cta-banner.png') no-repeat center center / cover;
+  background: #0B0B0E url('../images/groundsignal-cta-banner.jpg') no-repeat center center / cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
