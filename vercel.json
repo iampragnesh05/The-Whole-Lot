@@ -2,25 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "*.php",
+      "src": "api/index.php",
       "use": "vercel-php@0.7.3",
       "config": {
-        "includeFiles": ["data/**", "includes/**"]
-      }
-    },
-    {
-      "src": "admin/*.php",
-      "use": "vercel-php@0.7.3",
-      "config": {
-        "includeFiles": ["data/**", "includes/**", "admin/**"]
+        "includeFiles": ["data/**", "includes/**", "admin/**", "*.php"]
       }
     },
     {
       "src": "assets/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "data/**",
       "use": "@vercel/static"
     },
     {
@@ -54,56 +43,8 @@
       "dest": "/sitemap.xml"
     },
     {
-      "src": "/about",
-      "dest": "/about.php"
-    },
-    {
-      "src": "/services",
-      "dest": "/services.php"
-    },
-    {
-      "src": "/ground-signal",
-      "dest": "/ground-signal.php"
-    },
-    {
-      "src": "/founders-lab",
-      "dest": "/founders-lab.php"
-    },
-    {
-      "src": "/blogs",
-      "dest": "/blogs.php"
-    },
-    {
-      "src": "/blog/(.*)",
-      "dest": "/blog-post.php?slug=$1"
-    },
-    {
-      "src": "/reflections",
-      "dest": "/blogs.php"
-    },
-    {
-      "src": "/work",
-      "dest": "/work.php"
-    },
-    {
-      "src": "/contact",
-      "dest": "/contact.php"
-    },
-    {
-      "src": "/thank-you",
-      "dest": "/thank-you.php"
-    },
-    {
-      "src": "/admin/?$",
-      "dest": "/admin/index.php"
-    },
-    {
-      "src": "/admin/(.*)",
-      "dest": "/admin/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/api/index.php"
     }
   ]
 }
