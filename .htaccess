@@ -8,6 +8,10 @@ ErrorDocument 404 /404.php
   # Redirect legacy .html to .php
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
   RewriteRule ^ %1.php [R=301,L]
+
+  # Blog Clean URLs
+  RewriteRule ^blog/([a-zA-Z0-9_-]+)/?$ blog-post.php?slug=$1 [L,QSA]
+  RewriteRule ^blogs/?$ blogs.php [L,QSA]
 </IfModule>
 
 <IfModule mod_deflate.c>

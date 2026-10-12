@@ -9,7 +9,14 @@ STRUCTURE
 - services.php         Services & disciplines overview
 - ground-signal.php    Ground Signal research framework
 - founders-lab.php     The Founders Lab initiative
-- reflections.php      Field notes and observations
+- blogs.php            Blogs listing page with category filters & featured hero
+- blog-post.php        Single blog post template with full SEO & Schema markup
+- data/blogs.json      Portable JSON storage for all blog articles
+- admin/               Blog Content Management System (CMS)
+  - admin/login.php    Admin login (Default: admin / WholeLot2026!)
+  - admin/index.php    Blog dashboard with stats, search, and action controls
+  - admin/create.php   New blog creator with image upload and formatting
+  - admin/edit.php     Existing blog editor
 - work.php             Selected client work & approach
 - contact.php          Contact form with category selector
 - contact-submit.php   Native PHP mail processor
@@ -18,7 +25,13 @@ STRUCTURE
 - assets/css/styles.css Complete stylesheet with scroll effects & responsive design
 - assets/js/main.js    Scroll reveal observer, navigation states & parallax
 
-UPLOAD TO HOSTINGER
+ADMIN CMS ACCESS:
+1. Navigate to /admin/ (or https://yourdomain.com/admin/login.php)
+2. Default Username: admin
+3. Default Password: WholeLot2026!
+4. From the dashboard, you can add new articles, edit existing ones, toggle published/draft status, or change your password. Any update directly syncs to the live site.
+
+UPLOAD TO HOSTINGER:
 1. In Hostinger hPanel → Websites → Manage → File Manager, open public_html.
 2. Upload all files and folders directly inside public_html (so index.php sits in public_html).
-3. Test https://thewholelotmedia.com.
+3. Test https://thewholelotmedia.com and https://thewholelotmedia.com/admin.

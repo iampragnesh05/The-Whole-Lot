@@ -117,7 +117,7 @@ require_once __DIR__ . '/includes/header.php';
         <p>Where emerging entrepreneurs investigate and build ideas with support.</p>
       </div>
       <div class="card">
-        <h3>Reflections</h3>
+        <h3>Blogs</h3>
         <p>Where observations and questions can exist before they need to become products.</p>
       </div>
     </div>

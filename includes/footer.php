@@ -28,7 +28,7 @@
           <a href="services.php">Services</a>
           <a href="ground-signal.php">Ground Signal</a>
           <a href="founders-lab.php">The Founders Lab</a>
-          <a href="reflections.php">Reflections</a>
+          <a href="blogs.php">Blogs</a>
           <a href="work.php">Work</a>
           <a href="about.php">About</a>
         </nav>

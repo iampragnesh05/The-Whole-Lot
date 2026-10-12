@@ -24,11 +24,19 @@ $noindex = $noindex ?? false;
 <meta name="robots" content="noindex, nofollow">
 <?php else: ?>
 <link rel="canonical" href="<?php echo htmlspecialchars($canonicalUrl); ?>">
-<meta property="og:type" content="website">
+<meta property="og:type" content="<?php echo $ogType ?? 'website'; ?>">
 <meta property="og:title" content="<?php echo htmlspecialchars($pageTitle); ?>">
 <meta property="og:description" content="<?php echo htmlspecialchars($pageDescription); ?>">
 <meta property="og:url" content="<?php echo htmlspecialchars($canonicalUrl); ?>">
-<meta name="twitter:card" content="summary">
+<?php if (!empty($ogImage)): ?>
+<meta property="og:image" content="<?php echo htmlspecialchars($ogImage); ?>">
+<meta name="twitter:image" content="<?php echo htmlspecialchars($ogImage); ?>">
+<?php endif; ?>
+<meta name="twitter:card" content="<?php echo !empty($ogImage) ? 'summary_large_image' : 'summary'; ?>">
+<?php if (!empty($metaKeywords)): ?>
+<meta name="keywords" content="<?php echo htmlspecialchars($metaKeywords); ?>">
+<?php endif; ?>
+<?php if (!empty($extraHead)) echo $extraHead; ?>
 <?php endif; ?>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,7 +63,7 @@ $noindex = $noindex ?? false;
       <a href="services.php" class="<?php echo ($currentPage === 'services') ? 'active' : ''; ?>" <?php echo ($currentPage === 'services') ? 'aria-current="page"' : ''; ?>>Services</a>
       <a href="ground-signal.php" class="<?php echo ($currentPage === 'ground-signal') ? 'active' : ''; ?>" <?php echo ($currentPage === 'ground-signal') ? 'aria-current="page"' : ''; ?>>Ground Signal</a>
       <a href="founders-lab.php" class="<?php echo ($currentPage === 'founders-lab') ? 'active' : ''; ?>" <?php echo ($currentPage === 'founders-lab') ? 'aria-current="page"' : ''; ?>>The Founders Lab</a>
-      <a href="reflections.php" class="<?php echo ($currentPage === 'reflections') ? 'active' : ''; ?>" <?php echo ($currentPage === 'reflections') ? 'aria-current="page"' : ''; ?>>Reflections</a>
+      <a href="blogs.php" class="<?php echo ($currentPage === 'blogs') ? 'active' : ''; ?>" <?php echo ($currentPage === 'blogs') ? 'aria-current="page"' : ''; ?>>Blogs</a>
       <a href="work.php" class="<?php echo ($currentPage === 'work') ? 'active' : ''; ?>" <?php echo ($currentPage === 'work') ? 'aria-current="page"' : ''; ?>>Work</a>
       <a href="about.php" class="<?php echo ($currentPage === 'about') ? 'active' : ''; ?>" <?php echo ($currentPage === 'about') ? 'aria-current="page"' : ''; ?>>About</a>
     </nav>
@@ -77,7 +85,7 @@ $noindex = $noindex ?? false;
       <a href="services.php" class="<?php echo ($currentPage === 'services') ? 'active' : ''; ?>">Services</a>
       <a href="ground-signal.php" class="<?php echo ($currentPage === 'ground-signal') ? 'active' : ''; ?>">Ground Signal</a>
       <a href="founders-lab.php" class="<?php echo ($currentPage === 'founders-lab') ? 'active' : ''; ?>">The Founders Lab</a>
-      <a href="reflections.php" class="<?php echo ($currentPage === 'reflections') ? 'active' : ''; ?>">Reflections</a>
+      <a href="blogs.php" class="<?php echo ($currentPage === 'blogs') ? 'active' : ''; ?>">Blogs</a>
       <a href="work.php" class="<?php echo ($currentPage === 'work') ? 'active' : ''; ?>">Work</a>
       <a href="about.php" class="<?php echo ($currentPage === 'about') ? 'active' : ''; ?>">About</a>
       <div class="mobile-cta-wrap">

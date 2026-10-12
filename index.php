@@ -79,9 +79,9 @@ require_once __DIR__ . '/includes/header.php';
       </div>
       <span class="arrow">↗</span>
     </a>
-    <a class="ecosystem-card" href="reflections.php">
+    <a class="ecosystem-card" href="blogs.php">
       <div>
-        <div class="kicker">Reflections</div>
+        <div class="kicker">Blogs</div>
         <h3>Things we notice when we’re paying attention.</h3>
         <p>Observations, field notes, stories and questions about the wonderfully strange business of being human.</p>
       </div>
@@ -159,12 +159,6 @@ require_once __DIR__ . '/includes/header.php';
       </div>
     </div>
 
-    <!-- Centered Circular Stamp -->
-    <div class="hww-stamp-wrap reveal-scale" data-delay="200">
-      <div class="hww-stamp">
-        OBSERVE<br>• UNDERSTAND •<br>APPLY
-      </div>
-    </div>
   </div>
 </section>
 

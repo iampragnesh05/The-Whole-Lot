@@ -56,8 +56,16 @@
       "dest": "/founders-lab.php"
     },
     {
+      "src": "/blogs",
+      "dest": "/blogs.php"
+    },
+    {
+      "src": "/blog/(.*)",
+      "dest": "/blog-post.php?slug=$1"
+    },
+    {
       "src": "/reflections",
-      "dest": "/reflections.php"
+      "dest": "/blogs.php"
     },
     {
       "src": "/work",
