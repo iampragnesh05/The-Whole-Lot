@@ -22,9 +22,12 @@ $notices = [
     'updated' => 'Blog article updated successfully!',
     'deleted' => 'Blog article removed successfully.',
     'toggled' => 'Article status updated.',
-    'pwd_updated' => 'Admin password updated successfully.'
+    'pwd_updated' => 'Admin password updated successfully.',
+    'readonly_error' => 'Action failed: Server filesystem is read-only (e.g. Vercel Serverless). Changes cannot be saved directly on this host.',
+    'pwd_readonly_error' => 'Password update failed: Server filesystem is read-only (e.g. Vercel Serverless).'
 ];
 $noticeText = $notices[$msg] ?? '';
+$isReadOnly = (file_exists(BLOGS_DATA_FILE) && !is_writable(BLOGS_DATA_FILE)) || (file_exists(ADMIN_AUTH_FILE) && !is_writable(ADMIN_AUTH_FILE));
 ?>
 <!doctype html>
 <html lang="en">
@@ -420,6 +423,17 @@ $noticeText = $notices[$msg] ?? '';
 
   <!-- Main Content -->
   <main class="admin-main">
+    <?php if ($isReadOnly): ?>
+      <div style="background: #fffbeb; border: 1px solid #fcd34d; border-left: 5px solid #f59e0b; padding: 14px 18px; border-radius: 6px; margin-bottom: 24px; color: #92400e; font-size: 0.92rem; line-height: 1.55;">
+        <strong style="color: #78350f;">⚠️ Serverless / Read-Only Environment Active (e.g. Vercel)</strong><br>
+        This website is currently deployed on a serverless hosting provider with a read-only filesystem. Article reading and preview work as normal. However, direct browser changes (saving edits, new posts, image uploads) cannot be written directly to the serverless disk.
+        <div style="margin-top: 8px;">
+          • <strong>Full CMS editing:</strong> Host this site on a standard PHP web host like <strong>Hostinger</strong>, <strong>cPanel</strong>, or a <strong>VPS</strong> (see instructions in <code>README.txt</code>).<br>
+          • <strong>Local edits:</strong> You can download your current database below, edit locally, and push to Git.
+        </div>
+      </div>
+    <?php endif; ?>
+
     <?php if (!empty($noticeText)): ?>
       <div class="alert-banner"><?php echo htmlspecialchars($noticeText); ?></div>
     <?php endif; ?>
@@ -429,7 +443,8 @@ $noticeText = $notices[$msg] ?? '';
         <h1 class="dashboard-title">Blog Articles</h1>
         <p class="dashboard-subtitle">Manage, publish, and edit essays that pull directly into your website.</p>
       </div>
-      <div>
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <a href="export-blogs.php" class="btn-action" style="padding: 12px 18px; font-weight: 700; border-radius: 6px; font-size: 0.88rem; text-decoration: none;">⬇ Export blogs.json</a>
         <a href="create.php" class="btn-primary">+ Add New Blog Post</a>
       </div>
     </div>

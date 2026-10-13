@@ -4,6 +4,11 @@
  * The Whole Lot CMS
  */
 
+// Buffer output to prevent "headers already sent" errors during redirects
+if (ob_get_level() === 0) {
+    ob_start();
+}
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -12,8 +17,8 @@ require_once __DIR__ . '/../includes/blogs-helper.php';
 
 define('ADMIN_AUTH_FILE', __DIR__ . '/admin_auth.json');
 
-// Initialize admin_auth.json with default credentials if it doesn't exist
-if (!file_exists(ADMIN_AUTH_FILE)) {
+// Initialize admin_auth.json with default credentials if it doesn't exist and filesystem is writable
+if (!file_exists(ADMIN_AUTH_FILE) && is_writable(__DIR__)) {
     $defaultAuth = [
         'username' => 'admin',
         // Default password: WholeLot2026!
@@ -21,17 +26,29 @@ if (!file_exists(ADMIN_AUTH_FILE)) {
         'last_login' => null,
         'updated_at' => date('Y-m-d H:i:s')
     ];
-    file_put_contents(ADMIN_AUTH_FILE, json_encode($defaultAuth, JSON_PRETTY_PRINT));
+    @file_put_contents(ADMIN_AUTH_FILE, json_encode($defaultAuth, JSON_PRETTY_PRINT));
 }
 
 /**
  * Get current admin auth record
  */
 function get_admin_auth() {
-    if (!file_exists(ADMIN_AUTH_FILE)) {
-        return null;
+    if (file_exists(ADMIN_AUTH_FILE)) {
+        $content = @file_get_contents(ADMIN_AUTH_FILE);
+        if ($content !== false) {
+            $data = json_decode($content, true);
+            if (is_array($data) && !empty($data['username'])) {
+                return $data;
+            }
+        }
     }
-    return json_decode(file_get_contents(ADMIN_AUTH_FILE), true);
+    // Fallback default credentials if file cannot be read
+    return [
+        'username' => 'admin',
+        'password_hash' => password_hash('WholeLot2026!', PASSWORD_DEFAULT),
+        'last_login' => null,
+        'updated_at' => date('Y-m-d H:i:s')
+    ];
 }
 
 /**
@@ -47,7 +64,10 @@ function update_admin_auth($newUsername, $newPassword = null) {
     }
     $auth['updated_at'] = date('Y-m-d H:i:s');
     
-    return file_put_contents(ADMIN_AUTH_FILE, json_encode($auth, JSON_PRETTY_PRINT));
+    if (is_writable(ADMIN_AUTH_FILE)) {
+        return @file_put_contents(ADMIN_AUTH_FILE, json_encode($auth, JSON_PRETTY_PRINT)) !== false;
+    }
+    return false;
 }
 
 /**

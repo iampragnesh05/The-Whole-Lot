@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (in_array($ext, ['jpg', 'jpeg', 'png', 'webp'])) {
             $filename = 'banner_' . time() . '_' . preg_replace('/[^a-zA-Z0-9_-]/', '', pathinfo($file['name'], PATHINFO_FILENAME)) . '.' . $ext;
             $target = $bannerDir . '/' . $filename;
-            if (move_uploaded_file($file['tmp_name'], $target)) {
+            if (is_writable($bannerDir) && @move_uploaded_file($file['tmp_name'], $target)) {
                 $bannerPath = 'assets/images/blogs/' . $filename;
             }
         }
@@ -96,9 +96,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'status' => $status
         ];
         
-        save_blog($newBlog);
-        header("Location: index.php?msg=created");
-        exit;
+        $saved = save_blog($newBlog);
+        if ($saved === false) {
+            $error = 'Failed to save blog post: The server filesystem is read-only (e.g. Vercel Serverless). Persistent edits require standard PHP hosting (Hostinger/cPanel) or updating data/blogs.json locally.';
+        } else {
+            header("Location: index.php?msg=created");
+            exit;
+        }
     }
 }
 ?>

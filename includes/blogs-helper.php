@@ -80,7 +80,11 @@ function get_blog_by_id($id) {
  */
 function save_blog($blog) {
     if (!file_exists(BLOGS_DATA_FILE)) {
-        file_put_contents(BLOGS_DATA_FILE, json_encode([], JSON_PRETTY_PRINT));
+        if (is_writable(dirname(BLOGS_DATA_FILE))) {
+            @file_put_contents(BLOGS_DATA_FILE, json_encode([], JSON_PRETTY_PRINT));
+        } else {
+            return false;
+        }
     }
     
     $blogs = get_all_blogs(false);
@@ -135,8 +139,16 @@ function save_blog($blog) {
         }
     }
     
+    // Check writability before writing
+    if (file_exists(BLOGS_DATA_FILE) && !is_writable(BLOGS_DATA_FILE)) {
+        return false;
+    }
+    
     // Write back atomically
-    file_put_contents(BLOGS_DATA_FILE, json_encode($blogs, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+    $written = @file_put_contents(BLOGS_DATA_FILE, json_encode($blogs, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+    if ($written === false) {
+        return false;
+    }
     return $blog;
 }
 
@@ -155,8 +167,11 @@ function delete_blog($id) {
     });
     
     if (count($blogs) !== $initial_count) {
-        file_put_contents(BLOGS_DATA_FILE, json_encode(array_values($blogs), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-        return true;
+        if (file_exists(BLOGS_DATA_FILE) && !is_writable(BLOGS_DATA_FILE)) {
+            return false;
+        }
+        $written = @file_put_contents(BLOGS_DATA_FILE, json_encode(array_values($blogs), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        return $written !== false;
     }
     return false;
 }

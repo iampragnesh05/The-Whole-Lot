@@ -5,6 +5,10 @@
  * keeping the deployment well under Vercel's Hobby plan 12-function limit.
  */
 
+if (ob_get_level() === 0) {
+    ob_start();
+}
+
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $rootDir = dirname(__DIR__);
 

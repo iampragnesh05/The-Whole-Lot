@@ -1,4 +1,9 @@
 <?php
+// Buffer output early to guarantee headers can be sent
+if (ob_get_level() === 0) {
+    ob_start();
+}
+
 require_once __DIR__ . '/config.php';
 
 // If already logged in, redirect to dashboard
@@ -17,8 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['thewholelot_admin_logged_in'] = true;
         $_SESSION['thewholelot_admin_user'] = $username;
         
-        $auth['last_login'] = date('Y-m-d H:i:s');
-        file_put_contents(ADMIN_AUTH_FILE, json_encode($auth, JSON_PRETTY_PRINT));
+        // Only attempt to write last_login timestamp if the file system is writable
+        if (is_writable(ADMIN_AUTH_FILE)) {
+            $auth['last_login'] = date('Y-m-d H:i:s');
+            @file_put_contents(ADMIN_AUTH_FILE, json_encode($auth, JSON_PRETTY_PRINT));
+        }
         
         header("Location: index.php");
         exit;

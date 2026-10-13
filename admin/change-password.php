@@ -7,9 +7,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     
     if (!empty($username)) {
-        update_admin_auth($username, !empty($password) ? $password : null);
-        $_SESSION['thewholelot_admin_user'] = $username;
+        $updated = update_admin_auth($username, !empty($password) ? $password : null);
+        if ($updated) {
+            $_SESSION['thewholelot_admin_user'] = $username;
+            header("Location: index.php?msg=pwd_updated");
+            exit;
+        } else {
+            header("Location: index.php?msg=pwd_readonly_error");
+            exit;
+        }
     }
 }
-header("Location: index.php?msg=pwd_updated");
+header("Location: index.php");
 exit;
