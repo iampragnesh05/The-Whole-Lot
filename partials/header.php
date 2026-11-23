@@ -9,12 +9,11 @@ $isInitiativeActive = in_array($page, ['ground-signal', 'founders-lab', 'reflect
   <div class="container header-inner">
     <!-- Logo -->
     <a class="logo" href="/" aria-label="The Whole Lot home">
-      <span class="logo-mark">
-        <span class="logo-line">THE</span>
-        <span class="logo-line">WHOLE</span>
-        <span class="logo-line">LOT<span class="logo-dot">.</span></span>
-      </span>
-      <span class="logo-sub">MEDIA</span>
+      <picture>
+        <source srcset="/assets/img/logo.webp" type="image/webp">
+        <img src="/assets/img/logo.png" alt="The Whole Lot" class="logo-img" width="56" height="48">
+      </picture>
+      <span class="logo-text">THE WHOLE LOT</span>
     </a>
 
     <!-- Desktop Navigation (>=1024px) -->
@@ -63,13 +62,12 @@ $isInitiativeActive = in_array($page, ['ground-signal', 'founders-lab', 'reflect
 <!-- Mobile Full-Screen Ink Overlay -->
 <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation Menu">
   <div class="mobile-overlay-header">
-    <a class="logo" href="/" aria-label="The Whole Lot home" style="color: #FFFFFF;">
-      <span class="logo-mark">
-        <span class="logo-line">THE</span>
-        <span class="logo-line">WHOLE</span>
-        <span class="logo-line">LOT<span class="logo-dot">.</span></span>
-      </span>
-      <span class="logo-sub">MEDIA</span>
+    <a class="logo" href="/" aria-label="The Whole Lot home">
+      <picture>
+        <source srcset="/assets/img/logo-light.webp" type="image/webp">
+        <img src="/assets/img/logo-light.png" alt="The Whole Lot" class="logo-img" width="56" height="48">
+      </picture>
+      <span class="logo-text">THE WHOLE LOT</span>
     </a>
     <button class="mobile-overlay-close" aria-label="Close navigation menu">
       Close ✕

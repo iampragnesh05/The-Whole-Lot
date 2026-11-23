@@ -42,7 +42,7 @@ $ogImage = 'https://thewholelotmedia.com/assets/img/og/og-image.jpg';
   "@type": "Organization",
   "name": "The Whole Lot",
   "url": "https://thewholelotmedia.com/",
-  "logo": "https://thewholelotmedia.com/favicon.svg",
+  "logo": "https://thewholelotmedia.com/assets/img/logo.png",
   "description": "An independent strategy, research and growth practice exploring how people, culture and context shape businesses and the world around them.",
   "email": "hello@thewholelotmedia.com",
   "founder": {
@@ -65,6 +65,7 @@ $ogImage = 'https://thewholelotmedia.com/assets/img/og/og-image.jpg';
     "name": "The Whole Lot"
   },
   "url": "https://thewholelotmedia.com/about",
+  "image": "https://thewholelotmedia.com/assets/img/founder.jpeg",
   "description": "Avani Jain has spent more than a decade working across brand strategy, marketing, communications, research, culture and business growth."
 }
 </script>

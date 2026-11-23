@@ -119,15 +119,17 @@ $pagePath = '/about';
   <!-- 4. Meet the Founder (Avani Jain) -->
   <section class="section" aria-label="Founder Bio">
     <div class="container founder-layout">
-      <!-- Sticky 4:5 Portrait Placeholder -->
+      <!-- Sticky 4:5 Portrait -->
       <aside class="founder-portrait-sticky" data-reveal>
         <div class="founder-portrait-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-          <span style="color: var(--ink);">Avani Jain</span>
-          <span class="muted" style="font-size: 0.75rem; margin-top: 4px;">Founder & Lead Consultant</span>
+          <picture>
+            <source srcset="/assets/img/founder.webp" type="image/webp">
+            <img src="/assets/img/founder.jpeg" alt="Avani Jain — Founder & Lead Consultant, The Whole Lot" width="1147" height="1280" loading="lazy" class="founder-portrait-img">
+          </picture>
+        </div>
+        <div class="founder-portrait-caption">
+          <span class="founder-name">Avani Jain</span>
+          <span class="founder-title">Founder & Lead Consultant</span>
         </div>
       </aside>
 

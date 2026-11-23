@@ -11,6 +11,12 @@
     <div class="footer-grid">
       <!-- Col 1: Brand -->
       <div class="footer-brand">
+        <a href="/" class="footer-logo-link" aria-label="The Whole Lot home">
+          <picture>
+            <source srcset="/assets/img/logo-light.webp" type="image/webp">
+            <img src="/assets/img/logo-light.png" alt="The Whole Lot" class="footer-logo-img" width="65" height="56">
+          </picture>
+        </a>
         <h3>THE WHOLE LOT</h3>
         <p class="footer-tagline">Strategy · Research · Marketing · Culture</p>
         <p class="muted" style="font-size: 0.875rem;">An independent practice exploring how people, culture and context shape businesses and the world around them.</p>

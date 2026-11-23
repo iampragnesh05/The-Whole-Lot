@@ -491,14 +491,47 @@ main {
 /* Logo */
 .logo {
   display: inline-flex;
-  align-items: flex-start;
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-display);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   color: var(--ink);
   flex-shrink: 0;
+  text-decoration: none;
+  transition: opacity var(--dur-fast) ease;
 }
 
+.logo:hover {
+  opacity: 0.88;
+}
+
+.logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  transition: height var(--dur-med) var(--ease-out), transform var(--dur-fast) ease;
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.03);
+}
+
+.header.scrolled .logo-img {
+  height: 40px;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Fallback legacy logo mark */
 .logo-mark {
   display: flex;
   flex-direction: column;
@@ -522,6 +555,40 @@ main {
   letter-spacing: 0.18em;
   color: var(--pink);
   padding-top: 2px;
+}
+
+/* Inverted logo for mobile ink overlay */
+.mobile-overlay .logo {
+  color: #FFFFFF;
+}
+
+.mobile-overlay .logo-text {
+  color: #FFFFFF;
+}
+
+.mobile-overlay .logo-img {
+  height: 44px;
+}
+
+/* Footer brand logo */
+.footer-logo-link {
+  display: inline-block;
+  margin-bottom: 16px;
+  text-decoration: none;
+}
+
+.footer-logo-img {
+  height: 52px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  opacity: 0.92;
+  transition: opacity var(--dur-fast) ease, transform var(--dur-fast) ease;
+}
+
+.footer-logo-link:hover .footer-logo-img {
+  opacity: 1;
+  transform: scale(1.04);
 }
 
 /* Desktop Navigation & Right CTA */
@@ -1943,12 +2010,45 @@ main {
   aspect-ratio: 4 / 5;
   background-color: var(--paper);
   border: 1px solid var(--line);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.06);
+}
+
+.founder-portrait-box picture,
+.founder-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.founder-portrait-box:hover .founder-portrait-img {
+  transform: scale(1.02);
+}
+
+.founder-portrait-caption {
+  margin-top: 14px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  text-align: center;
+  gap: 2px;
+}
+
+.founder-name {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.founder-title {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 
 .founder-portrait-box svg {
@@ -2585,6 +2685,18 @@ textarea.form-control {
   /* Contact Page */
   .contact-form-wrap {
     padding: 24px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    gap: 8px;
+  }
+  .logo-img {
+    height: 40px;
+  }
+  .logo-text {
+    font-size: 1.25rem;
   }
 }
 
